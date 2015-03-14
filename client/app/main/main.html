@@ -3,17 +3,15 @@
 <header class="hero-unit" id="banner">
   <div class="container">
     <h1>Transistor</h1>
-    <i class="fa fa-volume-up fa-3x"></i>
-    <p class="lead">Live. Radio. Forever.</p>
-
-    <!--<img src="" alt="radio">-->
+   <i id="radio" class="fa fa-volume-up fa-3x"></i>
+    <p class="lead">Live Freeform Radio</p>
   </div>
 </header>
 
 <div class="container">
   <div class="row">
     <div class="col-lg-12">
-      <h1 class="page-header">Choose a Station:</h1>
+      <h1 class="">Choose a Station:</h1>
       <p>Selected: {{country.selected}}</p>
       <ui-select class="" ng-model="country.selected" theme="selectize" ng-disabled="disabled" style="width: 300px;">
         <ui-select-match placeholder="Select or search a country in the list...">{{$select.selected.name}}</ui-select-match>
@@ -44,7 +42,7 @@
   <!--</form>-->
 </div>
 
-<footer class="footer">
+<footer class="">
   <div class="container">
 
   </div>
