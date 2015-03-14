@@ -4,11 +4,20 @@ angular.module('transistorApp')
   .controller('MainCtrl', function ($scope, $http, socket) {
     $scope.awesomeThings = [];
 
+    $scope.stations = {};
+
     $http.get('/api/things').success(function(awesomeThings) {
       $scope.awesomeThings = awesomeThings;
-      console.log(awesomeThings, "yo");
+
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
+
+   $scope.tuned = function() {
+     console.log($scope.stations.selected);
+   }
+
+
+
 
     $scope.addThing = function() {
       if($scope.newThing === '') {
