@@ -7,14 +7,20 @@ angular.module('transistorApp')
     $scope.stations = {};
 
     $http.get('/api/things').success(function(awesomeThings) {
+
+      console.log(awesomeThings);
       $scope.awesomeThings = awesomeThings;
 
       socket.syncUpdates('thing', $scope.awesomeThings);
     });
 
-   $scope.tuned = function() {
-     console.log($scope.stations.selected);
-   }
+   $scope.tune = function() {
+     $http.get('/api/things/' + $scope.stations.selected._id).success(function(oneAwesomeThing){
+
+       console.log('one awesome thing!', oneAwesomeThing);
+
+     });
+   };
 
 
 

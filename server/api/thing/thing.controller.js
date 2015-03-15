@@ -12,6 +12,10 @@
 var _ = require('lodash');
 var Thing = require('./thing.model');
 
+var lame = require('lame');
+var icecast = require('icecast');
+var Speaker = require('speaker');
+
 // Get list of things
 exports.index = function(req, res) {
   Thing.find(function (err, things) {
@@ -25,7 +29,27 @@ exports.show = function(req, res) {
   Thing.findById(req.params.id, function (err, thing) {
     if(err) { return handleError(res, err); }
     if(!thing) { return res.send(404); }
-    return res.json(thing);
+
+    icecast.get(thing.url, function (res) {
+
+      // log the HTTP response headers
+      console.error(res.headers);
+
+
+      // log any "metadata" events that happen
+      res.on('metadata', function (metadata) {
+        var parsed = icecast.parse(metadata);
+        console.error(parsed);
+      });
+
+      // Let's play the music (assuming MP3 data).
+      // lame decodes and Speaker sends to speakers!
+      res.pipe(new lame.Decoder())
+        .pipe(new Speaker());
+    });
+
+
+    //return res.json(thing);
   });
 };
 
