@@ -14,7 +14,7 @@ var Thing = require('./thing.model');
 
 var lame = require('lame');
 var icecast = require('icecast');
-var Speaker = require('speaker');
+//var Speaker = require('speaker');
 
 // Get list of things
 exports.index = function(req, res) {
@@ -44,8 +44,8 @@ exports.show = function(req, res) {
 
       // Let's play the music (assuming MP3 data).
       // lame decodes and Speaker sends to speakers!
-      res.pipe(new lame.Decoder())
-        .pipe(new Speaker());
+      res.pipe(new lame.Decoder());
+        //.pipe(new Speaker());
     });
 
 

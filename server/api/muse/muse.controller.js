@@ -4,7 +4,7 @@
 var http = require('http');
 var lame = require('lame');
 var icecast = require('icecast');
-var Speaker = require('speaker');
+//var Speaker = require('speaker');
 
 //var request = require('request');
 //
@@ -33,8 +33,7 @@ icecast.get(url, function (res) {
 
 	// Let's play the music (assuming MP3 data).
 	// lame decodes and Speaker sends to speakers!
-	res.pipe(new lame.Decoder())
-		.pipe(new Speaker());
+	res.pipe(new lame.Decoder()).send();
 });
 
 
